@@ -1,11 +1,12 @@
-import "./App.css";
 import React, { useState } from "react";
 import Congrats from "./Components/Congrats";
 import GuessedWords from "./Components/GuessedWords";
 
 function App() {
   const [success, setSuccess] = useState(false);
-  let guessedWords = [];
+  let guessedWords = [ { guessedWords: "train", counterOfWordsMatches: 3 },
+  { guessedWords: "agile", counterOfWordsMatches: 1 },
+  { guessedWords: "party", counterOfWordsMatches: 5 },];
   const [counterOfWordsMatches, setCounterOfWordsMatches] = useState();
 
   setTimeout(() => {
@@ -15,13 +16,14 @@ function App() {
   }, 2000);
 
   return (
-    <div className="App">
-      React App
+    <div class="container">
+      <h1>React App</h1>
+      <Congrats success={success} />
       <GuessedWords
         guessedWords={guessedWords}
         counterOfWordsMatches={counterOfWordsMatches}
       />
-      <Congrats success={success} />
+     
     </div>
   );
 }

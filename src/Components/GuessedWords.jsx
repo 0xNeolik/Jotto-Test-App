@@ -1,5 +1,6 @@
 import React from "react";
 import propTypes from "prop-types";
+import "./GuessedWords.css"
 
 GuessedWords.propTypes = {
   guessedWords: propTypes.arrayOf(
@@ -26,9 +27,9 @@ export default function GuessedWords({ guessedWords, counterOfWordsMatches }) {
     );
   } else {
     contents = (
-      <div data-test="guessed-words">
+      <div data-test="guessed-words" className="container-table">
         <h3>Guessed Words</h3>
-        <table>
+        <table className="table table-striped">
           <thead>
             <tr><th>Guess</th><th>Matching Words</th></tr>
           </thead>
