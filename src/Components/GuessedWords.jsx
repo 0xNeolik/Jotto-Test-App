@@ -11,13 +11,33 @@ GuessedWords.propTypes = {
 };
 
 export default function GuessedWords({ guessedWords, counterOfWordsMatches }) {
-  let instruccions;
+  let contents;
+  const guessedWordsRows = guessedWords.map((word, index) =>{
+    return <tr key={index} data-test="guessed-word">
+      <td>{word.guessedWords}</td>
+      <td>{word.counterOfWordsMatches}</td>
+    </tr>
+  })
   if (guessedWords.length === 0) {
-    instruccions = (
-      <div data-test="component-instruccions-children">
+    contents = (
+      <span data-test="component-instruccions">
         Try to find the correct word
-      </div>
+      </span>
     );
+  } else {
+    contents = (
+      <div data-test="guessed-words">
+        <h3>Guessed Words</h3>
+        <table>
+          <thead>
+            <tr><th>Guess</th><th>Matching Words</th></tr>
+          </thead>
+          <tbody>
+            {guessedWordsRows}
+          </tbody>
+        </table>
+      </div>
+    )
   }
-  return <div data-test="component-instruccions-father">{instruccions}</div>;
+  return <div data-test="component-guessed-words">{contents}</div>;
 }
