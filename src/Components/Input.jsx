@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-function Input({ secretWord }) {
-  const [guessedWord, setGuessedWord] = React.useState("");
+function Input({ secretWord, success }) {
+  const [guessedWord, setGuessedWord] = useState("");
 
-  const clickButton = (event) => {
-    event.preventDefault;
-  };
+  if (success) {
+    return <div data-test="component-input" />;
+  }
 
   return (
     <div data-test="component-input">
@@ -16,11 +16,18 @@ function Input({ secretWord }) {
           className="mb-2 mx-sm-3"
           type="text"
           placeholder="Enter Guess"
+          value={guessedWord}
+          onChange={(event) => {
+            setGuessedWord(event.target.value);
+          }}
         />
         <button
           className="btn btn-primary mb-2"
           data-test="submit-button"
-          onclick={clickButton}
+          onClick={(event) => {
+            event.preventDefault();
+            setGuessedWord("");
+          }}
         >
           Submit
         </button>
